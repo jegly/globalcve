@@ -1,7 +1,6 @@
 // Trigger redeploy: patch confirmed
 import AdmZip from 'adm-zip';
 import { Buffer } from 'buffer';
-console.log("🧪 LIVE PATCH: ExploitDB crash guard active");
 import { NextResponse } from 'next/server';
 import { fetchJVNFeed } from "../../../lib/jvn";
 import { fetchExploitDB } from "../../../lib/exploitdb";
@@ -17,7 +16,7 @@ function isValidDate(date: unknown): date is string {
   return (
     typeof date === 'string' &&
     !isNaN(Date.parse(date)) &&
-    new Date(date).getFullYear() <= 2025
+    new Date(date).getFullYear() <= new Date().getFullYear()
   );
 }
 
@@ -66,8 +65,8 @@ export async function GET(request: Request) {
 
   // 🔹 Fetch from NVD (5 pages)
   for (let i = 0; i < 5; i++) {
-    const startIndex = i * 100;
-    const pageUrl = `https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=${encodeURIComponent(query)}&resultsPerPage=100&startIndex=${startIndex}`;
+    const nvdStartIndex = i * 100;
+    const pageUrl = `https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=${encodeURIComponent(query)}&resultsPerPage=100&startIndex=${nvdStartIndex}`;
     console.log(`🌐 NVD page ${i + 1}: ${pageUrl}`);
 
     try {
@@ -189,6 +188,7 @@ export async function GET(request: Request) {
   try {
     if (query.trim()) {
       const res = await fetch('https://github.com/globalcve/globalcve/releases/download/v1.0.0/cveorg.json');
+      if (!res.ok) throw new Error(`CVE.org fetch failed: ${res.status}`);
       const cveorgData = await res.json();
 
       const q = query.toLowerCase();
@@ -253,10 +253,14 @@ export async function GET(request: Request) {
     console.error('❌ Archive CVE fetch error:', err);
   }
 
-  // 🔹 Prioritize exact CVE ID match if applicable
+  // 🔹 Prioritize exact CVE ID match if applicable, otherwise keyword-filter
   let results = isExactCveId
     ? allResults.filter((r) => r.id?.toUpperCase() === query.toUpperCase())
-    : allResults;
+    : allResults.filter((item) => {
+        if (!query.trim()) return true;
+        const searchText = `${item.description} ${item.id} ${item.source}`.toLowerCase();
+        return searchText.includes(query.toLowerCase());
+      });
 
   console.log('🎯 Exact match results:', results.length);
 
