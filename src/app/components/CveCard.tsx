@@ -46,6 +46,23 @@ export default function CveCard({ id, description, severity, published, source, 
   const sourceLabel = source?.toUpperCase() || 'UNKNOWN';
   const sourceClass = sourceStyles[sourceLabel.replace('.', '')] || sourceStyles.UNKNOWN;
 
+  const sourceEmoji: Record<string, string> = {
+    NVD: '📘',
+    CIRCL: '🧠',
+    JVN: '🇯🇵',
+    EXPLOITDB: '💣',
+    'CVE.ORG': '🗂️',
+    ARCHIVE: '🗃️',
+  };
+  const sourceTitles: Record<string, string> = {
+    NVD: 'NVD source',
+    CIRCL: 'CIRCL source',
+    JVN: 'Japanese advisory source',
+    EXPLOITDB: 'ExploitDB source',
+    'CVE.ORG': 'CVE.org release',
+    ARCHIVE: 'Archived CVE data',
+  };
+
   return (
     <div className="border rounded-lg p-4 shadow-sm bg-white mb-4 transition-transform hover:scale-[1.02]">
       {isLoading ? (
@@ -60,36 +77,9 @@ export default function CveCard({ id, description, severity, published, source, 
                   🚨 KEV
                 </span>
               )}
-              {sourceLabel === 'JVN' && (
-                <span title="Japanese advisory source" className="text-xs px-2 py-1 rounded bg-red-700 text-white">
-                  🇯🇵 JVN
-                </span>
-              )}
-              {sourceLabel === 'EXPLOITDB' && (
-                <span title="ExploitDB source" className="text-xs px-2 py-1 rounded bg-red-600 text-white">
-                  💣 ExploitDB
-                </span>
-              )}
-              {sourceLabel === 'CIRCL' && (
-                <span title="CIRCL source" className="text-xs px-2 py-1 rounded bg-purple-500 text-white">
-                  🧠 CIRCL
-                </span>
-              )}
-              {sourceLabel === 'NVD' && (
-                <span title="NVD source" className="text-xs px-2 py-1 rounded bg-blue-500 text-white">
-                  📘 NVD
-                </span>
-              )}
-              {sourceLabel === 'CVE.ORG' && (
-                <span title="CVE.org release" className="text-xs px-2 py-1 rounded bg-black text-white">
-                  🗂️ CVE.org
-                </span>
-              )}
-              {sourceLabel === 'ARCHIVE' && (
-                <span title="Archived CVE data" className="text-xs px-2 py-1 rounded bg-gray-600 text-white">
-                  🗃️ Archive
-                </span>
-              )}
+              <span title={sourceTitles[sourceLabel] || sourceLabel} className={`text-xs px-2 py-1 rounded ${sourceClass}`}>
+                {sourceEmoji[sourceLabel] || '🔹'} {sourceLabel}
+              </span>
             </h2>
             <span className={`text-xs text-white px-2 py-1 rounded ${severityColors[severity] || severityColors.UNKNOWN}`}>
               {severityIcons[severity] || severityIcons.UNKNOWN} {severity}
