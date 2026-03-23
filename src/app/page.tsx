@@ -13,6 +13,7 @@ export default function Page() {
   const [hasSearched, setHasSearched] = useState(false);
   const [page, setPage] = useState(0);
   const [error, setError] = useState('');
+  const [hasMore, setHasMore] = useState(true);
 
   const fetchResults = async (reset = false, sort = sortOrder) => {
     if (loading) return;
@@ -28,8 +29,9 @@ export default function Page() {
       if (!res.ok) throw new Error(`Fetch failed with status ${res.status}`);
       const data = await res.json();
       const newResults = data.results || [];
-      setResults(reset ? newResults : [...results, ...newResults]);
+      setResults(reset ? newResults : (prev: any[]) => [...prev, ...newResults]);
       setPage(currentPage + 1);
+      setHasMore(newResults.length === 100);
     } catch (err: any) {
       console.error('❌ Fetch error:', err);
       setError('Something went wrong while fetching CVEs. Please try again.');
@@ -40,12 +42,13 @@ export default function Page() {
   };
 
   useEffect(() => {
-  if (hasSearched) {
-    setPage(0);
-    setResults([]); // ✅ clear stale results
-    fetchResults(true, sortOrder);
-  }
-}, [sortOrder]);
+    if (hasSearched) {
+      setPage(0);
+      setResults([]);
+      fetchResults(true, sortOrder);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortOrder]);
 
   return (
     <main className="min-h-screen bg-[#282a36] text-[#f8f8f2] flex flex-col items-center justify-center p-6 space-y-2">
@@ -125,11 +128,11 @@ export default function Page() {
             <option value="oldest">Oldest first</option>
           </select>
           <button
-  onClick={() => {
-    setPage(0);
-    setResults([]); // ✅ clear before search
-    fetchResults(true, sortOrder);
-  }}
+            onClick={() => {
+              setPage(0);
+              setResults([]);
+              fetchResults(true, sortOrder);
+            }}
             disabled={loading}
             className={`px-4 py-2 rounded-md font-semibold ${
               loading ? 'bg-[#6272a4] cursor-not-allowed' : 'bg-[#50fa7b] hover:bg-[#8be9fd]'
@@ -190,7 +193,7 @@ export default function Page() {
       </section>
 
       <footer className="mt-16 w-full border-t border-[#44475a] pt-6 text-center text-sm text-[#6272a4]">
-  <p>© 2025 JEGLY. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} JEGLY. All rights reserved.</p>
   <p className="mt-1">
     Built with ❤️ by <span className="text-[#50fa7b] font-semibold">JESSE-EG-LY</span> —
     <a href="https://github.com/jegly" className="text-[#ff79c6] underline ml-1">GitHub</a>
