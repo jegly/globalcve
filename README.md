@@ -5,7 +5,7 @@
 
 **_Global threats. Unified insights._**
 
-
+[![Readme Quotes](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark&border=true)](https://github.com/PiyushSuthar/github-readme-quotes)
 <p align="center">
   <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white" />
