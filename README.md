@@ -2,7 +2,7 @@
   <img src="docs/assets/globalCVE_V2.png" alt="GlobalCVE Logo" width="300"/>
 </p>
 
-
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/jegly/globalcve)
 
 **_Global threats. Unified insights._**
 
