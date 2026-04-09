@@ -235,7 +235,7 @@ export async function GET(request: Request) {
             .some((field) => isString(field) && field.toLowerCase().includes(q))
         );
 
-        console.log('📁 Matching %s CVEs: %d', year, matchingYearCVEs.length);
+         console.log('📁 Matching %s CVEs: %d', year, matchingYearCVEs.length);
 
         allResults.push(...matchingYearCVEs.map((item: any) => ({
           id: item.id,
