@@ -7,16 +7,14 @@
 **_Global threats. Unified insights._**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black" />
-  <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white" />
-  <img src="https://img.shields.io/github/commit-activity/m/globalcve/globalcve?color=orange&label=Commits" />
-  <img src="https://img.shields.io/badge/Branch-Stable-green?logo=github&logoColor=white" />
-  <img src="https://img.shields.io/badge/Security-CVE%20Tracking-red" />
-  <a href="https://globalcve.vercel.app">
-    <img src="https://vercelbadge.vercel.app/api/globalcve/globalcve" />
+<img src="https://img.shields.io/badge/TypeScript-6272A4?logo=typescript&logoColor=white" />
+<img src="https://img.shields.io/badge/Next.js-44475A?logo=next.js&logoColor=white" />
+<img src="https://img.shields.io/badge/Node.js-50FA7B?logo=node.js&logoColor=white" />
+<img src="https://img.shields.io/badge/React-FF79C6?logo=react&logoColor=white" />
+<img src="https://img.shields.io/badge/TailwindCSS-8BE9FD?logo=tailwindcss&logoColor=black" />
+<img src="https://img.shields.io/badge/Commits-F1FA8C?logo=github" />
+<img src="https://img.shields.io/badge/Branch-Stable-50FA7B?logo=github&logoColor=white" />
+<img src="https://img.shields.io/badge/Security-CVE%20Tracking-FF5555" />
   </a>
 </p>
 
