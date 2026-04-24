@@ -20,9 +20,7 @@
 
 [![Readme Quotes](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dracula)](https://github.com/PiyushSuthar/github-readme-quotes)
 
-## ☕ Support the Project
 
-If you find GlobalCVE useful, consider [buying me a coffee](https://www.buymeacoffee.com/globalcve) to support ongoing development.
 
 ## 🏷️ What Sets Us Apart
 
