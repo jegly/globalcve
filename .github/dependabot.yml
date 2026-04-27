@@ -1,8 +1,3 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
   - package-ecosystem: "npm"
@@ -13,21 +8,24 @@ updates:
     
     groups:
       production-dependencies:
+        patterns:
+          - "*"
         dependency-type: "production"
+      
       development-dependencies:
+        patterns:
+          - "*"
         dependency-type: "development"
-
      
       nextjs:
-        dependency-type: "production"
         patterns:
           - "next"
           - "react"
           - "react-dom"
           - "@types/react"
           - "@types/react-dom"
+        dependency-type: "production"
 
- 
     ignore:
       - dependency-name: "next"
         update-types: ["version-update:semver-major"]
@@ -37,4 +35,4 @@ updates:
         update-types: ["version-update:semver-major"]
 
     versioning-strategy: "increase-if-necessary"  
-    rebase-strategy: "auto"                       
+    rebase-strategy: "auto"
