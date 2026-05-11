@@ -12,9 +12,9 @@
     "@vercel/analytics": "^2.0.1",
     "adm-zip": "^0.5.16",
     "csv-parser": "^3.2.0",
-    "next": "16.2.4",
-    "react": "19.2.5",
-    "react-dom": "19.2.5",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
     "rss-parser": "^3.13.0"
   },
   "devDependencies": {
