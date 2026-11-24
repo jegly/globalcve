@@ -196,7 +196,7 @@ export default function Page() {
         <p>© {new Date().getFullYear()} JEGLY. All rights reserved.</p>
   <p className="mt-1">
     Built with ❤️ by <span className="text-[#50fa7b] font-semibold">JESSE-EG-LY</span> —
-    <a href="https://github.com/jegly" className="text-[#ff79c6] underline ml-1">GitHub</a>
+    <a href="https://justafewbugs.xyz" className="text-[#ff79c6] underline ml-1">GitHub</a>
     <span className="mx-1">|</span>
     <a href="https://jegly.xyz/" className="text-[#ff79c6] underline">jegly.xyz</a>
   </p>
